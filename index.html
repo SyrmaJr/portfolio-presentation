@@ -656,17 +656,20 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
     <div>
       <p class="kick r"><span class="ru">07 / заявка</span><span class="en">07 / request</span></p>
       <h2 class="r"><span class="ru">Обсудим <span class="grad">ваш сайт?</span></span><span class="en">Let's talk <span class="grad">about your site</span></span></h2>
-      <p class="lead r"><span class="ru">Оставьте заявку прямо здесь: в двух словах о бизнесе и как с вами связаться. Отвечу в течение дня и предложу стиль, структуру и сроки.</span><span class="en">Leave a request right here: a few words about your business and how to reach you. I'll reply within a day with a style, structure and timeline.</span></p>
+      <p class="lead r"><span class="ru">Оставьте заявку прямо здесь: в двух словах о бизнесе и ваш email. Отвечу на почту в течение дня и предложу стиль, структуру и сроки.</span><span class="en">Leave a request right here: a few words about your business and your email. I'll reply by email within a day with a style, structure and timeline.</span></p>
       <div class="links r" style="justify-content:flex-start">
         <a class="btn" href="https://t.me/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg><span class="ru">Или в Telegram</span><span class="en">Or Telegram</span></a>
+        <a class="btn" href="mailto:Smirxxq111@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Smirxxq111@gmail.com</a>
         <a class="btn" href="https://github.com/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>GitHub</a>
       </div>
     </div>
     <form class="card form r" id="form" novalidate>
       <label><span class="ru">Как вас зовут</span><span class="en">Your name</span>
         <input name="name" required maxlength="80" autocomplete="name"></label>
-      <label><span class="ru">Telegram, телефон или email</span><span class="en">Telegram, phone or email</span>
-        <input name="contact" required maxlength="120" placeholder="@username"></label>
+      <label>Email
+        <input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="you@mail.com"></label>
+      <label><span class="ru">Telegram или телефон (по желанию)</span><span class="en">Telegram or phone (optional)</span>
+        <input name="contact" maxlength="120" placeholder="@username"></label>
       <div class="lbl2"><span class="ru">Какой стиль ближе</span><span class="en">Preferred style</span></div>
       <div class="chips" id="chips">
         <label><input type="radio" name="style" value="Минимализм"><span><span class="ru">Минимализм</span><span class="en">Minimal</span></span></label>
@@ -791,14 +794,15 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
   if (form.elements._honey.value) return;
   let ok = true;
-  ['name','contact','message'].forEach(n => { const el = form.elements[n], bad = !el.value.trim(); el.classList.toggle('bad', bad); if (bad) ok = false; });
-  if (!ok) return msg('Заполните все поля', 'Please fill in all fields', 'err');
+  ['name','email','message'].forEach(n => { const el = form.elements[n], v = el.value.trim();
+    const bad = !v || (n === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)); el.classList.toggle('bad', bad); if (bad) ok = false; });
+  if (!ok) return msg('Заполните поля и проверьте email', 'Fill in the fields and check the email', 'err');
   const d = Object.fromEntries(new FormData(form));
   sendBtn.disabled = true; msg('Отправляю…', 'Sending…');
   try {
     const res = await fetch(MAIL_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json', Accept:'application/json'},
-      body: JSON.stringify({ 'Имя': d.name, 'Контакт': d.contact, 'Стиль': d.style, 'О проекте': d.message,
-        _subject: 'Заявка из презентации: ' + d.name, _template: 'table', _captcha: 'false' }) });
+      body: JSON.stringify({ 'Имя': d.name, 'Email': d.email, 'Telegram / телефон': d.contact || '—', 'Стиль': d.style, 'О проекте': d.message,
+        _replyto: d.email, _subject: 'Заявка из презентации: ' + d.name, _template: 'table', _captcha: 'false' }) });
     const j = await res.json().catch(() => ({}));
     if (!res.ok || String(j.success) !== 'true') throw new Error(j.message || res.status);
     form.reset(); msg('Заявка отправлена! Отвечу в течение дня.', 'Request sent! I\'ll reply within a day.', 'ok');
