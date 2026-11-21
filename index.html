@@ -286,6 +286,28 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
 .btn.main:hover{box-shadow:0 10px 40px rgba(59,232,255,.5)}
 .btn svg{width:20px;height:20px}
 
+/* ---------- form ---------- */
+.contact{grid-template-columns:1fr 1fr}
+.form{display:grid;gap:14px;padding:clamp(20px,2.4vw,32px)}
+.form label{display:grid;gap:7px;font-size:13px;color:var(--mut);font-family:var(--mono)}
+.form .lbl2{font-size:13px;color:var(--mut);font-family:var(--mono);margin-bottom:-6px}
+.form input:not([type=radio]),.form textarea{font:inherit;font-family:var(--sans);font-size:15px;color:var(--tx);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px 14px;outline:none;transition:border-color .25s,box-shadow .25s;resize:vertical}
+.form input:focus,.form textarea:focus{border-color:var(--c);box-shadow:0 0 0 3px rgba(59,232,255,.15)}
+.form .bad{border-color:#ff7a7a!important}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:block;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label>span{display:inline-block;font-family:var(--sans);font-size:13.5px;color:var(--tx);padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:all .25s}
+.chips input:checked+span{border-color:var(--c);color:var(--c);background:rgba(59,232,255,.1);box-shadow:0 0 14px rgba(59,232,255,.2)}
+.chips input:focus-visible+span{outline:2px solid var(--c);outline-offset:2px}
+.form .btn{justify-content:center;cursor:pointer;font-family:var(--sans);margin-top:4px}
+.form .btn:disabled{opacity:.6;cursor:wait}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px}
+.status{font-size:14px;min-height:1.4em;text-align:center}
+.status.ok{color:var(--g)}.status.err{color:#ff7a7a}
+.want{margin-left:4px;font-family:var(--mono);font-size:12px;padding:5px 12px;border-radius:99px;border:0;background:linear-gradient(100deg,var(--c),var(--g));color:var(--bg);font-weight:600;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.want:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,232,255,.35)}
+
 /* ---------- ui ---------- */
 .ui{position:fixed;z-index:5;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(16px,3vw,32px);pointer-events:none}
 .ui>*{pointer-events:auto}
@@ -498,7 +520,7 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
           <li><span class="ru">Один экран — один продукт. Ничего не отвлекает от главного</span><span class="en">One screen, one product. Nothing distracts</span></li>
           <li><span class="ru">Много воздуха и крупная типографика выглядят дорого</span><span class="en">White space and big type feel premium</span></li>
           <li><span class="ru">Две кнопки: «Купить» и «Подробнее». Человек сразу понимает, что делать</span><span class="en">Two buttons: "Buy" and "Learn more". Instantly clear</span></li></ul></div>
-        <div class="r"><span class="tag c">Inter / SF</span><span class="tag c">#F5F5F7</span><span class="tag">scroll-анимации</span><span class="tag">крупные фото</span></div>
+        <div class="r"><span class="tag c">Inter / SF</span><span class="tag c">#F5F5F7</span><span class="tag">scroll-анимации</span><span class="tag">крупные фото</span><button class="want" data-style="Минимализм"><span class="ru">Хочу такой →</span><span class="en">I want this →</span></button></div>
       </div>
     </div>
   </div>
@@ -517,7 +539,7 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
           <li><span class="ru">Скриншот продукта на первом экране — видно, что вы продаёте</span><span class="en">Product screenshot up front — people see what you sell</span></li>
           <li><span class="ru">Свечение и градиенты создают ощущение технологичности</span><span class="en">Glow and gradients feel cutting-edge</span></li>
           <li><span class="ru">Бенто-сетка показывает функции без длинных текстов</span><span class="en">Bento grids explain features without walls of text</span></li></ul></div>
-        <div class="r"><span class="tag c">dark UI</span><span class="tag c">glow</span><span class="tag">bento grid</span><span class="tag">pricing</span></div>
+        <div class="r"><span class="tag c">dark UI</span><span class="tag c">glow</span><span class="tag">bento grid</span><span class="tag">pricing</span><button class="want" data-style="Tech / SaaS"><span class="ru">Хочу такой →</span><span class="en">I want this →</span></button></div>
       </div>
     </div>
   </div>
@@ -536,7 +558,7 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
           <li><span class="ru">Всё главное на первом экране: меню, цены, часы, адрес</span><span class="en">Everything key on the first screen: menu, prices, hours, address</span></li>
           <li><span class="ru">Кнопка брони и звонок в одно касание с телефона</span><span class="en">One-tap booking and calling from a phone</span></li>
           <li><span class="ru">Тёплые цвета и живые фото вызывают доверие</span><span class="en">Warm colours and real photos build trust</span></li></ul></div>
-        <div class="r"><span class="tag c">serif</span><span class="tag c">онлайн-бронь</span><span class="tag">карта</span><span class="tag">отзывы</span></div>
+        <div class="r"><span class="tag c">serif</span><span class="tag c">онлайн-бронь</span><span class="tag">карта</span><span class="tag">отзывы</span><button class="want" data-style="Местный бизнес"><span class="ru">Хочу такой →</span><span class="en">I want this →</span></button></div>
       </div>
     </div>
   </div>
@@ -555,7 +577,7 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
           <li><span class="ru">Запоминается с первой секунды и выделяется среди одинаковых сайтов</span><span class="en">Memorable from the first second, stands out from lookalikes</span></li>
           <li><span class="ru">Огромный шрифт и смелые цвета передают характер бренда</span><span class="en">Huge type and loud colours carry the brand's personality</span></li>
           <li><span class="ru">Дата и кнопка «Билеты» не теряются ни на одном экране</span><span class="en">Date and "Tickets" never get lost on any screen</span></li></ul></div>
-        <div class="r"><span class="tag c">neo-brutalism</span><span class="tag c">marquee</span><span class="tag">стикеры</span><span class="tag">жёсткие тени</span></div>
+        <div class="r"><span class="tag c">neo-brutalism</span><span class="tag c">marquee</span><span class="tag">стикеры</span><span class="tag">жёсткие тени</span><button class="want" data-style="Яркий креатив"><span class="ru">Хочу такой →</span><span class="en">I want this →</span></button></div>
       </div>
     </div>
   </div>
@@ -630,15 +652,35 @@ h2{font-size:clamp(32px,4.6vw,66px);margin-bottom:20px}
 
 <!-- 12 · contact -->
 <section class="slide">
-  <div class="wrap end">
-    <p class="kick r" style="justify-content:center"><span class="ru">07 / контакт</span><span class="en">07 / contact</span></p>
-    <h2 class="r"><span class="ru">Обсудим <span class="grad">ваш сайт?</span></span><span class="en">Let's talk <span class="grad">about your site</span></span></h2>
-    <p class="lead r"><span class="ru">Напишите в Telegram, в двух словах расскажите о бизнесе. Предложу стиль, структуру и сроки.</span><span class="en">Message me on Telegram with a few words about your business. I'll suggest a style, structure and timeline.</span></p>
-    <div class="links r">
-      <a class="btn main" href="https://t.me/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg><span class="ru">Написать @SyrmaJr</span><span class="en">Message @SyrmaJr</span></a>
-      <a class="btn" href="https://samir-web.netlify.app/#contact" target="_blank" rel="noopener"><span class="ru">Форма на сайте</span><span class="en">Site form</span> ↗</a>
-      <a class="btn" href="https://github.com/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>GitHub</a>
+  <div class="wrap split contact">
+    <div>
+      <p class="kick r"><span class="ru">07 / заявка</span><span class="en">07 / request</span></p>
+      <h2 class="r"><span class="ru">Обсудим <span class="grad">ваш сайт?</span></span><span class="en">Let's talk <span class="grad">about your site</span></span></h2>
+      <p class="lead r"><span class="ru">Оставьте заявку прямо здесь: в двух словах о бизнесе и как с вами связаться. Отвечу в течение дня и предложу стиль, структуру и сроки.</span><span class="en">Leave a request right here: a few words about your business and how to reach you. I'll reply within a day with a style, structure and timeline.</span></p>
+      <div class="links r" style="justify-content:flex-start">
+        <a class="btn" href="https://t.me/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3Z"/></svg><span class="ru">Или в Telegram</span><span class="en">Or Telegram</span></a>
+        <a class="btn" href="https://github.com/SyrmaJr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>GitHub</a>
+      </div>
     </div>
+    <form class="card form r" id="form" novalidate>
+      <label><span class="ru">Как вас зовут</span><span class="en">Your name</span>
+        <input name="name" required maxlength="80" autocomplete="name"></label>
+      <label><span class="ru">Telegram, телефон или email</span><span class="en">Telegram, phone or email</span>
+        <input name="contact" required maxlength="120" placeholder="@username"></label>
+      <div class="lbl2"><span class="ru">Какой стиль ближе</span><span class="en">Preferred style</span></div>
+      <div class="chips" id="chips">
+        <label><input type="radio" name="style" value="Минимализм"><span><span class="ru">Минимализм</span><span class="en">Minimal</span></span></label>
+        <label><input type="radio" name="style" value="Tech / SaaS"><span>Tech / SaaS</span></label>
+        <label><input type="radio" name="style" value="Местный бизнес"><span><span class="ru">Местный бизнес</span><span class="en">Local business</span></span></label>
+        <label><input type="radio" name="style" value="Яркий креатив"><span><span class="ru">Креатив</span><span class="en">Creative</span></span></label>
+        <label><input type="radio" name="style" value="Пока не знаю" checked><span><span class="ru">Не знаю</span><span class="en">Not sure</span></span></label>
+      </div>
+      <label><span class="ru">О проекте</span><span class="en">About the project</span>
+        <textarea name="message" rows="3" maxlength="2000" required></textarea></label>
+      <input name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn main" type="submit" id="send"><span class="ru">Отправить заявку</span><span class="en">Send request</span> →</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -735,6 +777,35 @@ function sweep(){
     setP(pa + (pb - pa) * e); anim = requestAnimationFrame(step); };
   anim = requestAnimationFrame(step);
 }
+
+/* ---------- request form (FormSubmit → email) ---------- */
+const MAIL_ENDPOINT = 'https://formsubmit.co/ajax/Smirxxq111@gmail.com';
+const form = document.getElementById('form'), statusEl = document.getElementById('status'), sendBtn = document.getElementById('send');
+const msg = (ru, en, cls) => { statusEl.className = 'status ' + (cls || ''); statusEl.innerHTML = '<span class="ru">' + ru + '</span><span class="en">' + en + '</span>'; };
+document.querySelectorAll('.want').forEach(b => b.onclick = () => {
+  const r = form.querySelector('input[name=style][value="' + b.dataset.style + '"]'); if (r) r.checked = true;
+  go(N - 1); setTimeout(() => form.elements.name.focus({preventScroll:true}), 700);
+});
+form.addEventListener('keydown', e => e.stopPropagation());
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (form.elements._honey.value) return;
+  let ok = true;
+  ['name','contact','message'].forEach(n => { const el = form.elements[n], bad = !el.value.trim(); el.classList.toggle('bad', bad); if (bad) ok = false; });
+  if (!ok) return msg('Заполните все поля', 'Please fill in all fields', 'err');
+  const d = Object.fromEntries(new FormData(form));
+  sendBtn.disabled = true; msg('Отправляю…', 'Sending…');
+  try {
+    const res = await fetch(MAIL_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json', Accept:'application/json'},
+      body: JSON.stringify({ 'Имя': d.name, 'Контакт': d.contact, 'Стиль': d.style, 'О проекте': d.message,
+        _subject: 'Заявка из презентации: ' + d.name, _template: 'table', _captcha: 'false' }) });
+    const j = await res.json().catch(() => ({}));
+    if (!res.ok || String(j.success) !== 'true') throw new Error(j.message || res.status);
+    form.reset(); msg('Заявка отправлена! Отвечу в течение дня.', 'Request sent! I\'ll reply within a day.', 'ok');
+  } catch (err) {
+    msg('Не получилось отправить. Напишите в Telegram: <a href="https://t.me/SyrmaJr" style="text-decoration:underline">@SyrmaJr</a>', 'Couldn\'t send. Message me on Telegram: <a href="https://t.me/SyrmaJr" style="text-decoration:underline">@SyrmaJr</a>', 'err');
+  } finally { sendBtn.disabled = false; }
+});
 
 /* ---------- pointer spotlight ---------- */
 const mouse = {x:-999, y:-999};
